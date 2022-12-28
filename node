@@ -1,3 +1,9 @@
+create emty folder 
+open in vs code
+create new file index.js
+open terminal => npm init -> npm install express -> npm install nodemon -> node index.js
+
+________________________________________________________________________________________________________________
 1. Implement a Node js program which deletes festival records from 'festivals' array using "deleteFestivals" API.
 Declare festival array in Nodejs profile with predefined festivals as follows.
 
