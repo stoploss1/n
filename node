@@ -31,6 +31,20 @@ const deleteData = app.delete('/deletefestival/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`The app is runnig on ${port}`);
 });
+___________________________________Festival.json___________________________________________________
+[
+    {
+        "id": "1",
+        "festivname": "Sankranti",
+        "Month": "Jan"
+    },
+    {
+        "id": "2",
+        "festivname": "Dewali",
+        "Month": "Nov"
+    }
+]
+   
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 2. Implement Node js program which will expose "putReels" API to insert reels into MongoDB documents. Reels should have below format
 
@@ -84,6 +98,19 @@ app.post("/",(req,res) => {
 app.listen(3000,() => {
     console.log(`The app is running at ${port}`);
 })
+___________________________putreels.js________________________________________
+const mongoose = require('mongoose');
+
+//create the schema
+const putreels = new mongoose.Schema({
+    id:String,
+    filename:String,
+    creator:String,
+    date:Date
+}); 
+
+//create model and export it
+module.exports = mongoose.model("PutReel",putreels);
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 3. Create node js file and expose/implement 'getStudent' API. This API will connect to the Student table and return a student list.
 
@@ -110,8 +137,8 @@ app.get("/",async (req,res) => {
 app.post("/",(req,res) => {
     const student = new Student({
         rollNo:"1",
-        name:"Adam",
-        clgName:"hoggward College",
+        name:"Rohan",
+        clgName:"Modern College",
         course:"Computer Science"
     })
 
@@ -119,8 +146,19 @@ app.post("/",(req,res) => {
 })
 
 app.listen(port,() => {
-    console.log(`The port is running at ${port4. Implement a Node js program which will search and return all festivals of a particular month. Take month as input parameter}`);
+    console.log(`The port is running at ${port}`);
 })
+______________________________getstudent.js__________________________________________________
+const mongoose = require('mongoose');
+
+const students = new mongoose.Schema({
+    rollNo:String,
+    name:String,
+    clgName:String,
+    course:String
+})
+
+module.exports = mongoose.model("Student",students);
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 4. Implement a Node js program which will search and return all festivals of a particular month. Take month as input parameter.
 Declare festival array in Node js profile with predefined festivals as follows.
@@ -168,6 +206,22 @@ app.post("/", (req, res) => {
 app.listen(port, () => {
     console.log(`The app is listening at ${port}`);
 })
+______________________________________index.html_________________________________________________
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festivals</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <input type="text" placeholder="Enter the month of festival" name="festival" />
+        <button type="submit" name="submit">Submit</button>
+    </form>
+</body>
+</html>
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 5. Implement Nodejs program which inserts new festivals into 'festivals' array using "putFestivals".
 Declare festival array in Node js profile with predefined festivals as follows.
@@ -214,3 +268,13 @@ app.post("/putReels", (req, res) => {
 app.listen(port, () => {
     console.log(`The app is listening at ${port}`);
 })
+___________________________________Festival.js_________________________________________________________
+const mongoose = require('mongoose');
+
+const festivals = new mongoose.Schema({
+    id:String,
+    festivname:String,
+    Month:String
+})
+
+module.exports = mongoose.model("Festival",festivals);
